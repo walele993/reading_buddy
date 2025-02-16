@@ -23,24 +23,6 @@
 
 ---
 
-## File Structure
-reading-buddy/
-├── icons/
-│ ├── icon16.png
-│ ├── icon48.png
-│ └── icon128.png
-├── fonts/
-│ ├── Andika-Regular.woff2
-│ ├── AtkinsonHyperlegible-Regular.woff2
-│ └── ...other font files
-├── manifest.json
-├── popup.html
-├── popup.css
-├── popup.js
-└── content.js
-
----
-
 ## How It Works
 1. **Font Injection**:
    - Dynamically injects selected font using CSS `@font-face`
