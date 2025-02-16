@@ -1,0 +1,150 @@
+﻿* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  width: 300px;
+  background: #fcfaf4;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+h3 {
+  color: #ff4e6b;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-card {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+button {
+  background: #ff4e6b;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 78, 107, 0.3);
+}
+
+#resetSettings {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+#resetSettings:hover {
+  background: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(203, 213, 225, 0.3);
+}
+
+#toggleFont {
+  background: #ff4e6b;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#toggleFont:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 78, 107, 0.3);
+}
+
+.select-wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+select {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: white;
+  width: 100%;
+  appearance: none;
+}
+
+select:focus {
+  outline: 2px solid #ff4e6b;
+  border-color: transparent;
+}
+
+.size-control {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+#fontSize {
+  flex-grow: 1;
+  -webkit-appearance: none;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+}
+
+#fontSize::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ff4e6b;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#fontSize::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+#sizeValue {
+  font-weight: 600;
+  color: #ff4e6b;
+  min-width: 35px;
+  text-align: right;
+}
+
+.fa-font, .fa-text-height {
+  color: #ff4e6b;
+  font-size: 1.1rem;
+}

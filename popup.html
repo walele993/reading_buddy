@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Reading Buddy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h3><i class="fas fa-book-reader"></i> Reading Buddy</h3>
+  
+  <div class="control-card">
+    <button id="toggleFont">
+      <i class="fas fa-toggle-on"></i>
+      <span>Enable Font Adjustment</span>
+    </button>
+  </div>
+
+  <div class="control-card">
+    <div class="select-wrapper">
+      <i class="fas fa-font"></i>
+      <select id="fontSelect">
+        <option value="Andika">Andika</option>
+        <option value="Atkinson Hyperlegible">Atkinson Hyperlegible</option>
+        <option value="Fredoka">Fredoka</option>
+        <option value="Lexie Readable">Lexie Readable</option>
+        <option value="Open Dyslexic">Open Dyslexic</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="control-card">
+    <div class="size-control">
+      <i class="fas fa-text-height"></i>
+      <div class="slider-container">
+        <input type="range" id="fontSize" min="0.8" max="1.8" step="0.1" value="1.0">
+        <span id="sizeValue">1.0x</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-card">
+    <button id="resetSettings">
+      <i class="fas fa-undo"></i>
+      <span>Reset to Default</span>
+    </button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
