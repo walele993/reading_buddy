@@ -40,6 +40,36 @@
   </div>
 
   <div class="control-card">
+    <div class="size-control">
+      <i class="fas fa-arrows-alt-v"></i>
+      <div class="slider-container">
+        <input type="range" id="lineHeight" min="1.0" max="2.5" step="0.1" value="1.6">
+        <span id="lineHeightValue">1.6</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-card">
+    <div class="size-control">
+      <i class="fas fa-arrows-alt-h"></i>
+      <div class="slider-container">
+        <input type="range" id="letterSpacing" min="-0.1" max="0.5" step="0.05" value="0.05">
+        <span id="letterSpacingValue">0.05em</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-card">
+    <div class="size-control">
+      <i class="fas fa-text-width"></i>
+      <div class="slider-container">
+        <input type="range" id="wordSpacing" min="0" max="1.0" step="0.1" value="0.1">
+        <span id="wordSpacingValue">0.1em</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-card">
     <button id="resetSettings">
       <i class="fas fa-undo"></i>
       <span>Reset to Default</span>
