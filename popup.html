@@ -8,67 +8,105 @@
 </head>
 <body>
   <h3><i class="fas fa-book-reader"></i> Reading Buddy</h3>
-  
-  <div class="control-card">
-    <button id="toggleFont">
-      <i class="fas fa-toggle-on"></i>
-      <span>Enable Font Adjustment</span>
-    </button>
-  </div>
 
-  <div class="control-card">
-    <div class="select-wrapper">
-      <i class="fas fa-font"></i>
-      <select id="fontSelect">
-        <option value="Andika">Andika</option>
-        <option value="Atkinson Hyperlegible">Atkinson Hyperlegible</option>
-        <option value="Fredoka">Fredoka</option>
-        <option value="Lexie Readable">Lexie Readable</option>
-        <option value="Open Dyslexic">Open Dyslexic</option>
-      </select>
+  <div class="control-group">
+    <!-- Reading Ruler -->
+    <div class="control-group-title">
+      <i class="fas fa-ruler-combined"></i>
+      <span>Reading Ruler</span>
+    </div>
+    <div class="control-card">
+      <button id="toggleRuler">
+        <i class="fas fa-toggle-on"></i>
+        <span>Toggle Ruler</span>
+      </button>
+      <div class="color-picker">
+        <button class="color-option green" data-color="green"></button>
+        <button class="color-option blue" data-color="blue"></button>
+        <button class="color-option red" data-color="red"></button>
+        <button class="color-option yellow" data-color="yellow"></button>
+      </div>
     </div>
   </div>
 
-  <div class="control-card">
-    <div class="size-control">
+  <!-- Text Appearance -->
+  <div class="control-group">
+    <div class="control-group-title">
       <i class="fas fa-text-height"></i>
-      <div class="slider-container">
-        <input type="range" id="fontSize" min="0.8" max="1.8" step="0.1" value="1.0">
-        <span id="sizeValue">1.0x</span>
+      <span>Text Appearance</span>
+    </div>
+    <div class="control-card">
+      <!-- Aggiunto pulsante toggle font -->
+      <button id="toggleFont" style="margin-bottom: 0.75rem">
+        <i class="fas fa-toggle-on"></i>
+        <span>Enable Font Adjustments</span>
+      </button>
+
+      <div class="compact-control">
+        <i class="fas fa-font"></i>
+        <select id="fontSelect">
+          <option value="Open Dyslexic">Open Dyslexic</option>
+          <option value="Atkinson Hyperlegible">Atkinson Hyperlegible</option>
+          <option value="Lexie Readable">Lexie Readable</option>
+          <option value="Andika">Andika</option>
+          <option value="Fredoka">Fredoka</option>
+        </select>
+      </div>
+
+      <div class="compact-control">
+        <i class="fas fa-text-height"></i>
+        <div class="slider-container">
+          <input type="range" id="fontSize" min="0.8" max="1.8" step="0.1" value="1.0">
+        </div>
+        <span id="sizeValue" class="value-display">1.0x</span>
+      </div>
+
+      <div class="compact-control">
+        <i class="fas fa-adjust"></i>
+        <div class="slider-container">
+          <input type="range" id="contrast" min="0.5" max="3" step="0.1" value="1">
+        </div>
+        <span id="contrastValue" class="value-display">1.0x</span>
       </div>
     </div>
   </div>
 
-  <div class="control-card">
-    <div class="size-control">
-      <i class="fas fa-arrows-alt-v"></i>
-      <div class="slider-container">
-        <input type="range" id="lineHeight" min="1.0" max="2.5" step="0.1" value="1.6">
-        <span id="lineHeightValue">1.6</span>
+  <!-- Advanced Settings -->
+  <div class="collapsible-section">
+    <div class="section-header">
+      <span>Advanced Text Settings</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="section-content">
+      <div class="control-card">
+        <div class="compact-control">
+          <i class="fas fa-arrows-alt-v"></i>
+          <div class="slider-container">
+            <input type="range" id="lineHeight" min="1.0" max="2.5" step="0.1" value="1.6">
+          </div>
+          <span id="lineHeightValue" class="value-display">1.6</span>
+        </div>
+
+        <div class="compact-control">
+          <i class="fas fa-arrows-alt-h"></i>
+          <div class="slider-container">
+            <input type="range" id="letterSpacing" min="-0.1" max="0.5" step="0.05" value="0.05">
+          </div>
+          <span id="letterSpacingValue" class="value-display">0.05em</span>
+        </div>
+
+        <div class="compact-control">
+          <i class="fas fa-text-width"></i>
+          <div class="slider-container">
+            <input type="range" id="wordSpacing" min="0" max="1.0" step="0.1" value="0.1">
+          </div>
+          <span id="wordSpacingValue" class="value-display">0.1em</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="control-card">
-    <div class="size-control">
-      <i class="fas fa-arrows-alt-h"></i>
-      <div class="slider-container">
-        <input type="range" id="letterSpacing" min="-0.1" max="0.5" step="0.05" value="0.05">
-        <span id="letterSpacingValue">0.05em</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="control-card">
-    <div class="size-control">
-      <i class="fas fa-text-width"></i>
-      <div class="slider-container">
-        <input type="range" id="wordSpacing" min="0" max="1.0" step="0.1" value="0.1">
-        <span id="wordSpacingValue">0.1em</span>
-      </div>
-    </div>
-  </div>
-
+  <!-- Reset Button -->
   <div class="control-card">
     <button id="resetSettings">
       <i class="fas fa-undo"></i>
