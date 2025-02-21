@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+YPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -36,7 +36,6 @@
       <span>Text Appearance</span>
     </div>
     <div class="control-card">
-      <!-- Aggiunto pulsante toggle font -->
       <button id="toggleFont" style="margin-bottom: 0.75rem">
         <i class="fas fa-toggle-on"></i>
         <span>Enable Font Adjustments</span>
@@ -61,47 +60,54 @@
         <span id="sizeValue" class="value-display">1.0x</span>
       </div>
 
+      <!-- Advanced Settings dentro Text Appearance -->
+      <div class="collapsible-section" style="margin-top: 0.5rem;">
+        <div class="section-header">
+          <span>Advanced Settings</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="section-content">
+          <div class="compact-control">
+            <i class="fas fa-arrows-alt-v"></i>
+            <div class="slider-container">
+              <input type="range" id="lineHeight" min="1.0" max="2.5" step="0.1" value="1.6">
+            </div>
+            <span id="lineHeightValue" class="value-display">1.6</span>
+          </div>
+
+          <div class="compact-control">
+            <i class="fas fa-arrows-alt-h"></i>
+            <div class="slider-container">
+              <input type="range" id="letterSpacing" min="-0.1" max="0.5" step="0.05" value="0.05">
+            </div>
+            <span id="letterSpacingValue" class="value-display">0.05em</span>
+          </div>
+
+          <div class="compact-control">
+            <i class="fas fa-text-width"></i>
+            <div class="slider-container">
+              <input type="range" id="wordSpacing" min="0" max="1.0" step="0.1" value="0.1">
+            </div>
+            <span id="wordSpacingValue" class="value-display">0.1em</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nuova sezione per il Contrast -->
+  <div class="control-group">
+    <div class="control-group-title">
+      <i class="fas fa-adjust"></i>
+      <span>Color & Contrast</span>
+    </div>
+    <div class="control-card">
       <div class="compact-control">
         <i class="fas fa-adjust"></i>
         <div class="slider-container">
           <input type="range" id="contrast" min="0.5" max="3" step="0.1" value="1">
         </div>
         <span id="contrastValue" class="value-display">1.0x</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Advanced Settings -->
-  <div class="collapsible-section">
-    <div class="section-header">
-      <span>Advanced Text Settings</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="section-content">
-      <div class="control-card">
-        <div class="compact-control">
-          <i class="fas fa-arrows-alt-v"></i>
-          <div class="slider-container">
-            <input type="range" id="lineHeight" min="1.0" max="2.5" step="0.1" value="1.6">
-          </div>
-          <span id="lineHeightValue" class="value-display">1.6</span>
-        </div>
-
-        <div class="compact-control">
-          <i class="fas fa-arrows-alt-h"></i>
-          <div class="slider-container">
-            <input type="range" id="letterSpacing" min="-0.1" max="0.5" step="0.05" value="0.05">
-          </div>
-          <span id="letterSpacingValue" class="value-display">0.05em</span>
-        </div>
-
-        <div class="compact-control">
-          <i class="fas fa-text-width"></i>
-          <div class="slider-container">
-            <input type="range" id="wordSpacing" min="0" max="1.0" step="0.1" value="0.1">
-          </div>
-          <span id="wordSpacingValue" class="value-display">0.1em</span>
-        </div>
       </div>
     </div>
   </div>
