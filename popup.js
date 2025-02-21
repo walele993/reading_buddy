@@ -41,25 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
     'letterSpacing',
     'wordSpacing'
   ], (result) => {
-    // Font
+    // Impostazioni font
     const isFontActive = result.dyslexiaActive ?? true;
-    elements.toggleFont.querySelector('span').textContent = 
+    elements.toggleFont.querySelector('span').textContent =
       isFontActive ? "Disable Font Adjustments" : "Enable Font Adjustments";
     elements.toggleFont.classList.toggle('active-feature', isFontActive);
     elements.fontSelect.disabled = !isFontActive;
 
-    // Ruler
+    // Impostazioni ruler
     const isRulerActive = result.rulerActive ?? false;
-    elements.toggleRuler.querySelector('span').textContent = 
+    elements.toggleRuler.querySelector('span').textContent =
       isRulerActive ? "Disable Ruler" : "Enable Ruler";
     elements.toggleRuler.classList.toggle('active-feature', isRulerActive);
 
-    // Colori ruler
+    // Selezione colore per il ruler
     document.querySelectorAll('.color-option').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.color === (result.rulerColor || 'red'));
     });
 
-    // Altri valori
+    // Impostazioni aggiuntive
     elements.fontSelect.value = result.chosenFont || 'Open Dyslexic';
     elements.fontSize.value = result.fontSize || 1.0;
     elements.sizeValue.textContent = `${parseFloat(elements.fontSize.value).toFixed(1)}x`;
@@ -73,40 +73,40 @@ document.addEventListener('DOMContentLoaded', () => {
     elements.wordSpacingValue.textContent = `${parseFloat(elements.wordSpacing.value).toFixed(1)}em`;
   });
 
-  // Funzione di aggiornamento
+  // Funzione di aggiornamento della scheda attiva
   const updateActiveTab = () => {
-    chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
       if (tabs[0]?.id) {
-        chrome.tabs.sendMessage(tabs[0].id, {action: "updateSettings"});
+        chrome.tabs.sendMessage(tabs[0].id, { action: "updateSettings" });
       }
     });
   };
 
-  // Gestione toggle
+  // Funzione per gestire i toggle
   const handleToggle = (element, storageKey, activeText, inactiveText) => {
     chrome.storage.local.get([storageKey], result => {
       const currentValue = result[storageKey] ?? false;
       const newValue = !currentValue;
-      
+
       chrome.storage.local.set({ [storageKey]: newValue }, () => {
         element.querySelector('span').textContent = newValue ? activeText : inactiveText;
         element.classList.toggle('active-feature', newValue);
-        
-        if(storageKey === 'dyslexiaActive') {
+
+        if (storageKey === 'dyslexiaActive') {
           elements.fontSelect.disabled = !newValue;
         }
-        
+
         updateActiveTab();
       });
     });
   };
 
-  // Event listeners
-  elements.toggleFont.addEventListener('click', () => 
+  // Event listeners per i toggle
+  elements.toggleFont.addEventListener('click', () =>
     handleToggle(elements.toggleFont, 'dyslexiaActive', "Disable Font Adjustments", "Enable Font Adjustments")
   );
 
-  elements.toggleRuler.addEventListener('click', () => 
+  elements.toggleRuler.addEventListener('click', () =>
     handleToggle(elements.toggleRuler, 'rulerActive', "Disable Ruler", "Enable Ruler")
   );
 
@@ -115,20 +115,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const color = e.target.dataset.color;
       document.querySelectorAll('.color-option').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-      chrome.storage.local.set({rulerColor: color}, updateActiveTab);
+      chrome.storage.local.set({ rulerColor: color }, updateActiveTab);
     });
   });
 
   elements.fontSelect.addEventListener('change', () => {
-    chrome.storage.local.set({chosenFont: elements.fontSelect.value}, updateActiveTab);
+    chrome.storage.local.set({ chosenFont: elements.fontSelect.value }, updateActiveTab);
   });
 
-  // Gestione slider
+  // Gestione degli slider
   const createSliderHandler = (element, key, formatter) => {
     element.addEventListener('input', () => {
       const value = parseFloat(element.value);
       chrome.storage.local.set({ [key]: value }, () => {
-        if(formatter) formatter(value);
+        if (formatter) formatter(value);
         updateActiveTab();
       });
     });
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     elements.wordSpacingValue.textContent = `${value.toFixed(1)}em`;
   });
 
-  // Reset
+  // Pulsante per il reset
   elements.resetSettings.addEventListener('click', () => {
     chrome.storage.local.clear(() => {
       chrome.tabs.reload();
