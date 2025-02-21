@@ -1,23 +1,21 @@
-let ruler = null;
-
 function createRuler() {
   ruler = document.createElement('div');
   ruler.id = 'dyslexia-ruler';
   ruler.style.cssText = `
-      position: fixed;
-      width: 95%;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 42px;
-      background: var(--ruler-bg, rgba(255, 107, 107, 0.4));
-      border-top: 2px solid var(--ruler-border, rgba(255, 107, 107, 0.7));
-      box-shadow: 0 0 10px var(--ruler-shadow, rgba(255, 107, 107, 0.5));
-      z-index: 999999;
-      pointer-events: none;
-      display: none;
-      transition: top 0.1s ease;
-      border-radius: 15px;
+    position: fixed;
+    width: 95%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 42px;
+    background: var(--ruler-bg, rgba(255, 107, 107, 0.4));
+    border-top: 2px solid var(--ruler-border, rgba(255, 107, 107, 0.7));
+    box-shadow: 0 0 10px var(--ruler-shadow, rgba(255, 107, 107, 0.5));
+    z-index: 999999;
+    pointer-events: none;
+    display: none;
+    transition: top 0.1s ease;
+    border-radius: 15px;
   `;
   
   document.body.appendChild(ruler);
@@ -25,36 +23,37 @@ function createRuler() {
 
 function updateRulerPosition(e) {
   if (ruler) {
-    ruler.style.top = `${e.clientY}px`;
+    const scrollY = window.scrollY || window.pageYOffset;
+    ruler.style.top = `${e.clientY + scrollY}px`;
   }
 }
 
-// Apply settings
-function applySettings() {
+// Applica il filtro contrast (per il body)
+function applyContrast() {
   chrome.storage.local.get(['contrast'], (result) => {
     document.body.style.filter = `contrast(${result.contrast || 1})`;
   });
 }
 
-// Initialize
+// Inizializzazione di ruler e contrast
 createRuler();
-applySettings();
+applyContrast();
 
-
-// Apply font and contrast settings
+// Applica le impostazioni di font e contrast al documento (o a un root specifico)
 function applySettings(root = document) {
   chrome.storage.local.get(
     ['dyslexiaActive', 'chosenFont', 'fontSize', 'lineHeight', 'letterSpacing', 'wordSpacing', 'contrast'], 
     (result) => {
       const styleId = 'reading-buddy-style';
       let style = root.getElementById(styleId);
-      
+
+      // Rimuovo il vecchio stile per forzare il ricaricamento
+      if (style) style.remove();
+
       if (result.dyslexiaActive) {
-        if (!style) {
-          style = root.createElement('style');
-          style.id = styleId;
-          root.head.appendChild(style);
-        }
+        style = root.createElement('style');
+        style.id = styleId;
+        root.head.appendChild(style);
 
         const fontMap = {
           "Andika": "Andika-Regular.woff2",
@@ -81,17 +80,15 @@ function applySettings(root = document) {
             }
           `;
         }
-      } else if (style) {
-        style.remove();
       }
 
-      // Apply contrast
+      // Applico il contrasto alla pagina
       root.body.style.filter = `contrast(${result.contrast || 1})`;
     }
   );
 }
 
-// Handle Shadow DOM
+// Gestione del Shadow DOM
 function injectInShadowRoot(node) {
   if (node.shadowRoot) {
     applySettings(node.shadowRoot);
@@ -99,7 +96,7 @@ function injectInShadowRoot(node) {
   }
 }
 
-// Listen for changes
+// Ascolta le modifiche nelle impostazioni
 chrome.storage.local.onChanged.addListener((changes) => {
   console.log('Storage changed:', changes);
 
@@ -140,7 +137,7 @@ chrome.storage.local.onChanged.addListener((changes) => {
   }
 });
 
-// Handle dynamic content
+// Osserva le modifiche nel DOM (inclusi eventuali Shadow DOM)
 const observer = new MutationObserver((mutations) => {
   applySettings();
   document.querySelectorAll('*').forEach(injectInShadowRoot);
@@ -153,10 +150,10 @@ observer.observe(document, {
   characterData: false
 });
 
-// Apply to Shadow DOM elements
+// Applica le impostazioni anche agli elementi all'interno di eventuali Shadow DOM
 document.querySelectorAll('*').forEach(injectInShadowRoot);
 
-// Message listener
+// Ascolta i messaggi dalla extension
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "updateSettings") {
     applySettings();
