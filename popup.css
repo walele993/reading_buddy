@@ -154,6 +154,10 @@ button#resetSettings:hover {
   margin-bottom: 0.75rem;
 }
 
+.control-group .collapsible-section {
+  margin-top: 0.75rem;
+}
+
 .section-header {
   background: var(--bg);
   padding: 0.75rem;
@@ -173,6 +177,12 @@ button#resetSettings:hover {
   background: white;
   border-top: 1px solid var(--border);
   display: none;
+}
+
+.section-header span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
 }
 
 .fas {
