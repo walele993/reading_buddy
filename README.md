@@ -1,105 +1,150 @@
 # Reading Buddy
 
-## Overview
-**Reading Buddy** is a browser extension designed to enhance reading accessibility by providing dyslexia-friendly fonts and customizable text settings. This extension helps users tailor their reading experience with specialized fonts and adjustable text sizing. *Note: This project is currently a work in progress and not yet officially released.*
+**Reading Buddy** is a Chrome extension designed to enhance web reading accessibility with a focus on dyslexia-friendly features. It provides customizable text appearance adjustments and an interactive reading ruler, making online content easier to read and navigate.
+
+---
+
+## Table of Contents
+
+- [Features](#features)
+- [Usage](#usage)
+- [How It Works](#how-it-works)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
 ## Features
-- **Dyslexia-Friendly Fonts**: Choose from 5+ accessibility-optimized fonts
-- **Text Sizing**: Adjust font size from 0.8x to 1.8x of original size
-- **Real-Time Application**: Changes apply instantly to all page content
-- **Cross-Site Compatibility**: Works on most websites including Google
-- **Persistent Settings**: Remembers user preferences between sessions
-- **Reset Functionality**: Restore default settings with one click
 
----
+- **Dyslexia-Friendly Fonts**  
+  Choose from a curated list of fonts optimized for dyslexic readers, including:
+  - Open Dyslexic
+  - Atkinson Hyperlegible
+  - Lexie Readable
+  - Andika
+  - Fredoka
 
-## Technologies Used
-- **HTML**: Popup interface structure
-- **CSS**: Modern styling with flexbox and grid
-- **JavaScript**: Font injection and settings management
-- **Chrome Extensions API**: Storage, scripting, and tabs APIs
+- **Customizable Text Appearance**  
+  Granular control over reading experience:
+  - Font size (0.8x-1.8x)
+  - Line height (1.0-2.5x)
+  - Letter spacing (-0.1em-0.5em)
+  - Word spacing (0-1.0em)
+  - Advanced typography controls in collapsible section
 
----
+- **Smart Contrast Adjustment**  
+  New in v1.2: Dynamic contrast slider (0.5x-3x) with real-time preview
 
-## How It Works
-1. **Font Injection**:
-   - Dynamically injects selected font using CSS `@font-face`
-   - Applies styles to all page elements including dynamic content
-   - Handles Shadow DOM components and iframes
+- **Enhanced Reading Ruler**  
+  Improved ruler design featuring:
+  - Smooth position transitions
+  - Rounded edges
+  - Multiple color presets
+  - Dynamic shadow effects
 
-2. **Settings Management**:
-   - Stores user preferences using `chrome.storage.local`
-   - Syncs settings across all open tabs
-   - Uses MutationObserver to handle dynamic content changes
+- **Dark Mode Support**  
+  Automatic adaptation to system preferences
+  - Custom-tuned dark theme colors
+  - Preserves readability in low-light conditions
 
-3. **Accessibility Features**:
-   - Adjusts line height and letter spacing for readability
-   - Maintains text hierarchy while applying styles
-   - Preserves original page layout
+- **Cross-Platform Compatibility**  
+  Full support for:
+  - Dynamic content loading
+  - Shadow DOM elements
+  - Iframe content
+  - Single-page applications
 
----
-
-## Installation *(Development Preview)*
-1. Clone/download the repository
-2. In Chrome: `chrome://extensions/`
-3. Enable **Developer Mode** (top-right toggle)
-4. Click **Load unpacked** and select the extension folder
+- **Performance Optimizations**  
+  - MutationObserver for dynamic content
+  - Debounced event handlers
+  - CSS-based animations
 
 ---
 
 ## Usage
-1. Click the extension icon to open the control panel
-2. Toggle font adjustment with the main switch
-3. Select preferred font from dropdown
-4. Adjust font size using the slider
-5. Reset to defaults with the reset button
+
+1. **Color & Contrast Adjustment**  
+   Use the dedicated contrast slider in the "Color & Contrast" section to optimize text-background relationships.
+
+2. **Advanced Typography Controls**  
+   Access detailed spacing controls through the expandable "Advanced Settings" section.
+
+3. **Dark Mode Adaptation**  
+   The extension automatically switches themes based on your system preferences while maintaining readability.
+
+4. **Persistent Settings**  
+   All preferences persist across sessions and pages, with automatic application to new content.
 
 ---
 
-## Customization
-- **Add Fonts**: Add new WOFF2 fonts to `/fonts` and update:
-  - `manifest.json` web resources
-  - Font mapping in `content.js`
-- **Adjust Size Range**: Modify `min`/`max` values in popup.html
-- **UI Colors**: Update CSS variables in `popup.css`
+## How It Works
+
+### Enhanced Features Implementation
+
+- **Contrast Engine**  
+  Uses CSS `filter: contrast()` with fallback values for maximum compatibility
+
+- **Font Handling**  
+  - Web-accessible font resources
+  - Dynamic `@font-face` injection
+  - Cross-origin font loading
+
+- **Shadow DOM Support**  
+  Recursive shadow root traversal with:
+  - Style encapsulation detection
+  - Per-root style injection
+  - MutationObserver integration
+
+- **Performance Features**  
+  - Debounced DOM mutation handling
+  - CSS custom properties for ruler styling
+  - RequestAnimationFrame for smooth transitions
+
+- **Accessibility**  
+  - Semantic HTML in popup
+  - ARIA-compliant controls
+  - System contrast ratio preservation
 
 ---
 
-## APIs Used
-- **Chrome Storage API**: Persistent settings storage
-- **Chrome Scripting API**: Content script management
-- **Chrome Tabs API**: Cross-tab communication
-- **Chrome Runtime API**: Extension messaging
+## Development Updates
+
+### New in v1.2
+
+- Added contrast adjustment subsystem
+- Implemented dark mode support
+- Introduced collapsible sections in UI
+- Added shadow DOM content handling
+- Improved font loading reliability
+- Enhanced ruler visual design
+
+### Updated Project Structure
+
+- **Dark Mode CSS**  
+  `prefers-color-scheme` media queries in popup.css
+
+- **Font Resources**  
+  Web-accessible font files in `/fonts`
+
+- **Shadow DOM Handling**  
+  Recursive injection logic in content.js
 
 ---
 
-## Future Improvements
-- [ ] Text spacing customization
-- [ ] Contrast adjustment options
-- [ ] Per-website configuration
-- [ ] Font weight adjustment
-- [ ] Keyboard shortcuts
-- [ ] Export/import settings
+## Contributing
 
----
-
-## Development Status
-⚠️ **Work in Progress**  
-This extension is under active development. Current features are functional but may have compatibility issues with some websites. Contributions welcome!
-
----
-
-## Conclusion
-Reading Buddy aims to make web content more accessible for users with dyslexia and visual impairments. While still in development, it already provides powerful tools to customize reading experiences. Stay tuned for updates!
+We particularly welcome contributions in these areas:
+- Additional dark mode variants
+- Contrast calculation algorithms
+- Performance benchmarking
+- Cross-browser compatibility
 
 ---
 
 ## Credits
-Created by Gabriele Meucci - Focusing on digital accessibility solutions
-
----
+Created by **Gabriele Meucci** – Focusing on digital accessibility solutions.
 
 **Happy reading! 📖**  
 *Every word matters when it's accessible to all.*
+
