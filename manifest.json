@@ -3,7 +3,7 @@
   "name": "Reading Buddy",
   "version": "1.2",
   "description": "Accessibility-focused reading support extension with dyslexia-friendly features",
-  "permissions": ["activeTab", "scripting", "storage"],
+  "permissions": ["activeTab", "storage"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
